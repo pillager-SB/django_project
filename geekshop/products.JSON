@@ -1,5 +1,4 @@
-{"products" : [
-  {
+  [{
     "name": "Стул 1",
     "description": "отличный стул!",
     "image": "/img/product-11.jpg"
@@ -28,5 +27,4 @@
     "name": "Стул 6",
     "description": "стул успешного человека!",
     "image": "img/product-61.jpg"
-  }
-]}
+  }]
