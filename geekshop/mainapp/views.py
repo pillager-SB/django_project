@@ -17,26 +17,12 @@ def index(request):
 
 
 def products(request):
+    with open('products.JSON', 'r', encoding='utf-8') as f:
+        lst = json.load(f)
     return render(request, 'mainapp/products.html', context={
         'title': 'Магазин: Товары',
         'menu': MENU_LINKS,
-        'products': [
-            {
-                "name": "Стул 1",
-                "description": "отличный стул!",
-                "image": "/img/product-11.jpg"
-            },
-            {
-                "name": "Стул 2",
-                "description": "сесть - не встать!",
-                "image": "/img/product-21.jpg"
-            },
-            {
-                "name": "Стул 3",
-                "description": "для себя - любимого!",
-                "image": "/img/product-31.jpg"
-            }
-        ],
+        'products': lst,
     })
 
 
