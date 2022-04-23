@@ -1,4 +1,6 @@
 {% extends 'mainapp/base.html' %}
+{% load static %}
+
 {% block content %}
 <div class="hero-white">
     {% include 'mainapp/includes/main_menu_inc.html' %}
@@ -52,7 +54,7 @@
                     позволит вам это.</p>
                 <p>Различные цвета</p>
                 <p>высочайший уровень
-                    эргономики и прочность.</p>
+                эргономики и прочность.</p>
             </div>
         </div>
     </div>
@@ -63,34 +65,17 @@
             <a class="explore" href="#">показать все <img src="/static/img/arrow.png" alt=""></a>
         </div>
         <div class="related-products clearfix">
+            {% for product in products  %}
             <div class="block">
-                <a href="#"><img src="/static/img/product-11.jpg" alt="">
+                <a href="#"><img src="{% static product.image %}" alt="">
                     <div class="text">
                         <img src="/static/img/icon-hover.png" alt="img">
-                        <h4>Стул повышенного качества</h4>
-                        <p>Не оторваться. </p>
+                        <h4>{{ product.name|title }}</h4>
+                        <p>{{ product.description|upper }}</p>
                     </div>
                 </a>
             </div>
-            <div class="block">
-                <a href="#"><img src="/static/img/product-21.jpg" alt="">
-                    <div class="text">
-                        <img src="/static/img/icon-hover.png" alt="img">
-                        <h4>Стул повышенного качества</h4>
-                        <p>Не оторваться. </p>
-                    </div>
-                </a>
-            </div>
-            <div class="block">
-                <a href="#"><img src="/static/img/product-31.jpg" alt="">
-                    <div class="text">
-                        <img src="/static/img/icon-hover.png" alt="img">
-                        <h4>Стул повышенного качества</h4>
-                        <p>Не оторваться. </p>
-                    </div>
-                </a>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
 </div>

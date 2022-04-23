@@ -2,22 +2,22 @@
   {
     "name": "Стул 1",
     "description": "отличный стул!",
-    "image": "img/product-11.jpg"
+    "image": "/img/product-11.jpg"
   },
   {
     "name": "Стул 2",
     "description": "сесть - не встать!",
-    "image": "img/product-21.jpg"
+    "image": "/img/product-21.jpg"
   },
   {
     "name": "Стул 3",
     "description": "для себя - любимого!",
-    "image": "img/product-31.jpg"
+    "image": "/img/product-31.jpg"
   },
   {
     "name": "Стул 4",
     "description": "прекрасный стул!",
-    "image": "img/product-41.jpg"
+    "image": "/img/product-41.jpg"
   },
   {
     "name": "Стул 5",
