@@ -4,7 +4,7 @@
 	padding: 0;
 }
 
-body {
+body,footer {
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -12,6 +12,15 @@ html, body {
 	height: 100%;
 }
 
+footer {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 800
+    color: #5c5c5c;
+	text-align: center;
+    background-color: #EeEeEe;
+    padding: 6px 6px
+}
 .clr {
 	height: 384px;
 }
