@@ -17,11 +17,11 @@ def index(request):
 
 def products(request):
     with open('products.JSON', 'r', encoding='utf-8') as f:
-        lst = json.load(f)
+        products_lst = json.load(f)
     return render(request, 'mainapp/products.html', context={
         'title': 'Магазин: Товары',
         'menu': MENU_LINKS,
-        'products': lst,
+        'products': products_lst,
     })
 
 
