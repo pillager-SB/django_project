@@ -2,7 +2,7 @@
     <a href="{% url 'index' %}" class="logo"></a>
     <ul class="menu">
         {% with url_name=request.resolver_match.url_name %}
-        {%for link, name in menu.items %}
+        {% for link, name in menu.items %}
         <li><a href="{% url link %}" class="{% if url_name == link %} active {% endif %}">{{ name }}</a></li>
         {% endfor %}
         {% endwith %}
