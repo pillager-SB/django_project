@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Product, Category
-import json
 
 MENU_LINKS = {
     'index': 'Главная',
