@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from mainapp.models import Category, Product
 from django.db.utils import IntegrityError
+from django.contrib.auth import get_user_model
 
 
 def load_from_json(file_name):
@@ -25,3 +26,7 @@ class Command(BaseCommand):
             product_data['category'] = Category.objects.get(name=product_data['category'])
             product = Product(**product_data)
             product.save()
+
+        User = get_user_model()
+        if not User.objects.filter(username='admin'):
+            User.objects.create_superuser(username='admin', password='adminadmin')

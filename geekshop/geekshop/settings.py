@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mainapp',
+    'authapp'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Data files
 DATA_ROOT = BASE_DIR / "json"
+# Auth
+AUTH_USER_MODEL = 'authapp.ShopUser'
