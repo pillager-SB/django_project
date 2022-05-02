@@ -28,5 +28,5 @@ class Command(BaseCommand):
             product.save()
 
         User = get_user_model()
-        if not User.objects.filter(username='admin'):
-            User.objects.create_superuser(username='admin', password='adminadmin')
+        if not User.objects.filter(username='nadmin'):
+            User.objects.create_superuser(username='nadmin', password='admin')
