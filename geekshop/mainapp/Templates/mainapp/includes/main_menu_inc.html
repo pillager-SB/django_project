@@ -6,6 +6,13 @@
         <li><a href="{% url link %}" class="{% if url_name == link %} active {% endif %}">{{ name }}</a></li>
         {% endfor %}
         {% endwith %}
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'auth:edit' %}">{{user.username}}</a></li>
+            <li><a href="{% url 'auth:logout' %}">Выйти</a></li>
+        {% else %}
+            <li><a href="{% url 'auth:login' %}">Войти</a></li>
+            <li><a href="{% url 'auth:register' %}">Регистрация</a></li>
+        {% endif %}
     </ul>
     <a href="#" class="search"></a>
 </div>

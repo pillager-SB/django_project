@@ -1,0 +1,11 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <form class="pure-form" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <input class="pure-button pure-button-primary button-radius" type="submit" value="сохранить">
+    </form>
+    <img class="user_avatar" src="/media/{{ user.avatar }}"/>
+{% endblock %}
