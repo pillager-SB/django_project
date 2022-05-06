@@ -1,0 +1,21 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="hero-white">
+    {% include 'mainapp/includes/main_menu_inc.html' %}
+</div>
+<div class="details">
+    <div class="links clearfix">
+        {% include 'mainapp/includes/categories_menu_inc.html' %}
+    </div>
+    <div class="category_products related">
+        <div class="title clearfix">
+            <h2>{{ category.name }}</h2>
+            <a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
+        </div>
+        <div class="related-products clearfix">
+            {% include 'mainapp/includes/product_list_inc.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

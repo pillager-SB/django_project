@@ -100,7 +100,7 @@ footer {
 	left: 1210px;
 }
 
-.clearfix:after {
+. fix:after {
 	content: "";
 	display: block;
 	clear: both;
@@ -1085,4 +1085,16 @@ td:first-child {
 }
 .related-products a:hover .text{
 	display: block;
+}
+.category_products.related .title {
+	height: 100px;
+}
+.category_products.related .title h2 {
+	margin-top: 0px;
+}
+.category_products.related .title .explore {
+	margin-top: 0px;
+}
+.category_products.related-products {
+	margin-bottom: 0px;
 }

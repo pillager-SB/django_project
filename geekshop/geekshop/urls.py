@@ -22,9 +22,11 @@ from mainapp import views as mainapp
 urlpatterns = [
     path('', mainapp.index, name='index'),
     path('products', mainapp.products, name='products'),
+    path('products/<int:pk>/', mainapp.category, name='category'),
     path('contact', mainapp.contact, name='contact'),
     path('admin/', admin.site.urls),
     path('auth/', include("authapp.urls", namespace='auth')),
+    path('basket/', include("basketapp.urls", namespace='basket')),
 
 ]
 if settings.DEBUG:
