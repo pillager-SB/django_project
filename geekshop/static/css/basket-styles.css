@@ -1,0 +1,12 @@
+.content {
+    max-width: 768px;
+    padding: 1em 2em;
+}
+.user_avatar {
+    padding-top: 6px;
+    max-width: 768px;
+}
+
+.button-radius {
+    border-radius: 4px;
+}

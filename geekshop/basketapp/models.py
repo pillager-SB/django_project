@@ -4,6 +4,7 @@ from django.conf import settings
 
 
 class BasketManager(models.Manager):
+
     def quantity(self):
         return sum(item.quantity for item in self.all())
 
@@ -20,5 +21,4 @@ class Basket(models.Model):
     objects = BasketManager()
 
     def __str__(self):
-        return f'{self.product} - {self.quantity} шт.'
-
+        return f'{self.product} - {self.quantity} шт.({self.quantity * self.product.price} р.)'
