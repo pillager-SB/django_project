@@ -24,6 +24,7 @@ def products(request):
         'menu': MENU_LINKS,
         'products': products,
         'categories': categories,
+
     })
 
 
