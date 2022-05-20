@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import json
+from .models import Product, Category
 
 MENU_LINKS = {
     'index': 'Главная',
@@ -11,17 +11,20 @@ MENU_LINKS = {
 def index(request):
     return render(request, 'mainapp/index.html', context={
         'title': 'Магазин: Главная',
+        'url_name': 'index',
         'menu': MENU_LINKS,
     })
 
 
 def products(request):
-    with open('products.JSON', 'r', encoding='utf-8') as f:
-        products_lst = json.load(f)
+    categories = Category.objects.all()
+    products = Product.objects.all()
     return render(request, 'mainapp/products.html', context={
         'title': 'Магазин: Товары',
         'menu': MENU_LINKS,
-        'products': products_lst,
+        'products': products,
+        'categories': categories,
+
     })
 
 
