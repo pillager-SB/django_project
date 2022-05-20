@@ -1,6 +1,6 @@
 <ul class="links-menu">
     {% with url_name=request.resolver_match.url_name %}
-    {% with category=request.resolver_match.kwargs.pk %}
+    {% with category_id=request.resolver_match.kwargs.pk %}
     <li><a href="{% url 'products' %}" class="{% if url_name == 'products' %}active{% endif %}">все</a></li>
     {% for category in categories %}
         <li><a href="{% url 'category' category.id %}" class="{% if url_name == 'category' and category_id == category.id %}active{% endif %}">{{ category.name }}</a></li>

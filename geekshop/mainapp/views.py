@@ -1,6 +1,6 @@
+import random
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
-
 
 MENU_LINKS = {
     'index': 'Главная',
@@ -20,12 +20,30 @@ def index(request):
 def products(request):
     categories = Category.objects.all()
     products = Product.objects.all()
+    hot_product = random.choice(products)
+    products = products.exclude(pk=hot_product.pk)[:3]
     return render(request, 'mainapp/products.html', context={
         'title': 'Магазин: Товары',
         'menu': MENU_LINKS,
+        'hot_product': hot_product,
         'products': products,
         'categories': categories,
     })
+
+
+def product(request, pk):
+    categories = Category.objects.all()
+    product = get_object_or_404(Product, pk=pk)
+    return render(
+        request,
+        'mainapp/product.html',
+        context={
+            'title': product.name,
+            'menu': MENU_LINKS,
+            'product': product,
+            'category': product.category,
+            'categories': categories,
+        })
 
 
 def category(request, pk):
@@ -49,6 +67,3 @@ def contact(request):
         'title': 'Магазин: Контакты',
         'menu': MENU_LINKS,
     })
-
-
-
