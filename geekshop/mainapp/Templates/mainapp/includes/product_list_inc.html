@@ -1,7 +1,8 @@
 {% load static %}
+
 {% for product in products %}
 <div class="block">
-    <a href="{% url 'product' product.pk %}">
+    <a href="{% url 'product' product.id %}">
         {% if product.image %}
             <img class="product-image" src="{{ product.image.url }}" alt="{{ product.short_desc }}">
         {% else %}

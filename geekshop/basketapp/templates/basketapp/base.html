@@ -10,9 +10,11 @@
         </title>
         {% block css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/pure-min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/basket-style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/basket-styles.css' %}">
         {% endblock %}
         {% block js %}
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/basket_scripts.js' %}"></script>
         {% endblock %}
     </head>
     <body>

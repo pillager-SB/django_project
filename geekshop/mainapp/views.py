@@ -14,7 +14,7 @@ def index(request):
         'title': 'Магазин: Главная',
         'url_name': 'index',
         'menu': MENU_LINKS,
-    })
+    } )
 
 
 def products(request):
