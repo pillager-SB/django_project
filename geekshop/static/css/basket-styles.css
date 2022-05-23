@@ -1,0 +1,12 @@
+.content {
+    max-width: 1060px;
+    padding: 1em 2em;
+}
+.product-image {
+    padding-top: 6px;
+    max-width: 320px;
+}
+
+.button-radius {
+    border-radius: 4px;
+}

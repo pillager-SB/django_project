@@ -1,7 +1,7 @@
 {% extends 'authapp/base.html' %}
 {% load static %}
 {% block content %}
-<form class="pure-form" action="{% url 'auth:login' %}" method="post">
+<form class="pure-form" action="" method="post">
     {% csrf_token %}
     {{ login_form.as_p }}
     <br>

@@ -1,8 +1,9 @@
+from authapp.forms import EditForm, LoginForm, RegisterForm
 from django.contrib import auth
 from django.http.response import HttpResponseRedirect
-from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from authapp.forms import EditForm, LoginForm, RegisterForm
+from django.urls import reverse
 
 
 def login(request):
@@ -13,8 +14,9 @@ def login(request):
         password = login_form.cleaned_data['password']
         user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
-            auth.login(request, user)
-            return HttpResponseRedirect(reverse('index'))
+            auth.login(request, user=user)
+            redirect_url = request.GET.get('next', reverse('index'))
+            return HttpResponseRedirect(redirect_url)
 
     content = {'title': title, 'login_form': login_form}
     return render(request, 'authapp/login.html', content)
@@ -33,6 +35,7 @@ def register(request):
     return render(request, 'authapp/register.html', content)
 
 
+@login_required
 def edit(request):
     title = 'Редактирование'
     if request.method == 'POST':

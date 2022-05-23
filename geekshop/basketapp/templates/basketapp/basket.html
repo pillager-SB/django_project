@@ -1,8 +1,0 @@
-{% extends 'basketapp/base.html' %}
-{% load static %}
-
-{% block content %}
-    {% for item in basket %}
-        <p>{{ item }} <a href="{% url 'basketapp:remove' item.id %}">удалить</a></p>
-    {% endfor %}
-{% endblock %}

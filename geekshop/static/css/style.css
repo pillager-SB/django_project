@@ -914,11 +914,21 @@ td:first-child {
 	width: 570px;
 	height: 570px;
 }
+.slider-product img {
+	width: 570px;
+	height: 570px;
+	object-fit: cover;
+
+}
 .slider-control {
 	width: 420px;
 	height: 70px;
 	margin: 11px auto 0px;
 	padding-left: 150px
+}
+.slider-control .block img {
+	height: 70px;
+	width: 70px;
 }
 .slider-control .block {
 	height: 70px;
