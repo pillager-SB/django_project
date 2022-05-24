@@ -1,0 +1,11 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<form class="pure-form" action="{% url 'admin:create_category' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <input class="pure-button pure-button-primary button-radius" type="submit" value="Создать категорию">
+</form>
+{% endblock %}

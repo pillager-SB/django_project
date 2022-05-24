@@ -9,6 +9,9 @@
         {% if request.user.is_authenticated %}
             <li><a href="{% url 'auth:edit' %}">{{user.username}}</a></li>
             <li><a href="{% url 'basket:view' %}">Корзина ({{ request.user.basket.quantity }})</a></li>
+            {% if request.user.is_superuser %}
+                <li><a href="{% url 'admin:users' %}">Админка</a></li>
+            {% endif %}
             <li><a href="{% url 'auth:logout' %}">Выйти</a></li>
         {% else %}
             <li><a href="{% url 'auth:login' %}">Войти</a></li>

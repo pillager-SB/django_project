@@ -1,0 +1,36 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+<table class="pure-table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+    <tr class="{% if not product.is_active %} inactive {% endif %}">
+        <td><span>{{ product.name }}</span></span></td>
+        <td><span>{{ product.description }}</span></td>
+        <td><span>{{ product.quantity }}</span></td>
+        <td>
+            <a href="{% url 'admin:update_product' product.pk %}"
+               class="pure-button pure-button-primary button-radius">
+                редактировать
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'admin:delete_product' product.pk %}"
+               class="pure-button pure-button-primary button-radius">
+                удалить
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

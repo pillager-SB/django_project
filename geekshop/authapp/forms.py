@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from .models import ShopUser
+from authapp.models import ShopUser
 
 
 class LoginForm(AuthenticationForm):
@@ -17,7 +17,7 @@ class LoginForm(AuthenticationForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = ShopUser
-        fields = ('username', 'first_name', 'password1', 'password2', 'email', 'age', 'avatar', 'city')
+        fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email', 'age', 'avatar', 'city')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,7 +29,7 @@ class RegisterForm(UserCreationForm):
 class EditForm(UserChangeForm):
     class Meta:
         model = ShopUser
-        fields = ('username', 'first_name', 'email', 'age', 'avatar', 'password', 'city')
+        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'avatar', 'password', 'city')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
