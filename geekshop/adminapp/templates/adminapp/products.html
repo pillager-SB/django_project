@@ -1,0 +1,18 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    {% for product in products %}
+    <div>
+        <span>{{ product.name }}</span>
+        <span>{{ product.description }}</span>
+        <span>{{ product.quantity }}</span>
+        <a href="{% url 'admin:update_product' product.pk %}" class="pure-button pure-button-primary button-radius">
+            редактировать
+        <a href="{% url 'admin:delete_product' product.pk %}" class="pure-button pure-button-primary button-radius">
+            удалить
+                  </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
