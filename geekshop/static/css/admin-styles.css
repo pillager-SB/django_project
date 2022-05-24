@@ -1,0 +1,15 @@
+.content {
+    max-width: 1060px;
+    padding: 1em 2em;
+}
+.button-secondary {
+    color: white;
+    background: rgb(66,184,221);
+}
+.create-button {
+    margin: 0.5em 0;
+}
+.inactive {
+    color: gray;
+    background-color: lightgray;
+}

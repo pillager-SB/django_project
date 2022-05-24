@@ -3,10 +3,10 @@
 
 {% block content %}
 <!--{% if user.avatar %}-->
-<!--    <img class="user_avatar" src="/media/{{ user.avatar }}"/>-->
+<!--<img class="user_avatar" src="{{ user.avatar.url }}"/>-->
 <!--{% endif %}-->
 
-<form class="pure-form" enctype="multipart/form-data" action="{% url 'admin:update_user' %}" method="post" >
+<form class="pure-form" enctype="multipart/form-data" action="{% url 'admin:update_user' user.pk %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input class="pure-button pure-button-primary button-radius" type="submit" value="сохранить">

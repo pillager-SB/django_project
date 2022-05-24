@@ -17,6 +17,7 @@ class Product(models.Model):
     image = models.ImageField(verbose_name='изображение продукта', upload_to='product_images')
     price = models.DecimalField(verbose_name='цена продукта', max_digits=10, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField(verbose_name='количество на складе', default=0)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.name} ({self.category.name})"
