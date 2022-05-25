@@ -129,4 +129,7 @@ def update_product(request, pk):
 
 @check_is_superuser
 def delete_product(request, pk):
-    pass
+    product = get_object_or_404(Product, pk=pk)
+    product.is_active = False
+    product.save()
+    return HttpResponseRedirect(reverse('admin:products', args=[product.category.pk]))
