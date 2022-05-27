@@ -1,6 +1,11 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
 {% block content %}
+<div class="create-button">
+    <a href="{% url 'admin:create_product' category.pk %}" class="pure-button pure-button-primary button-radius">
+        создать продукт
+    </a>
+</div>
 <table class="pure-table">
     <thead>
     <tr>
