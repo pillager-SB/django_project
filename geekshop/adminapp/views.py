@@ -33,7 +33,7 @@ class UserListView(SuperUserRequiredMixin, TitleMixin, ListView):
     template_name = "adminapp/users.html"
     model = ShopUser
     title = "Пользователи"
-    paginate_by = 14
+    paginate_by = 2
     page_kwarg = 'my_page'
 
     def get_queryset(selfs):

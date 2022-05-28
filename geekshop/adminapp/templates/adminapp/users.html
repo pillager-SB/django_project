@@ -35,4 +35,13 @@
     {% endfor %}
     </tbody>
 </table>
+<nav class="list-pages">
+        <ul>
+            {% for p in paginator.page_range %}
+            <li class="page-num">
+                <a href="{{ p }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
 {% endblock %}
