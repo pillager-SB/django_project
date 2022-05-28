@@ -34,6 +34,7 @@ class UserListView(SuperUserRequiredMixin, TitleMixin, ListView):
     model = ShopUser
     title = "Пользователи"
     paginate_by = 2
+    p = 1
     page_kwarg = 'my_page'
 
     def get_queryset(selfs):

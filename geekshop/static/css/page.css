@@ -32,6 +32,8 @@
 	border: none;
 	color: rgb(66,184,221);
 	font-size: 20px;
+	font-weight: 700;
+	text-decoration: underline;
 }
 .list-pages .page-num-selected:hover {
 	box-shadow: none;
