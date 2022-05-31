@@ -1,0 +1,40 @@
+.list-pages {
+	text-align: left;
+	margin: 0 0 20px 0;
+}
+.list-pages ul {
+	margin: 20px 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+.list-pages ul li {
+	display: inline-block;
+	margin: 0 20px 0 0;
+}
+.list-pages a {
+	color: #000;
+	font-size: 18px;
+	text-decoration: none;
+}
+.list-pages .page-num, .page-num-selected {
+    text-align: center;
+	display: inline-block;
+	width: 40px;
+	height: 23px;
+	padding: 4px 0 0 0;
+	border: 1px solid rgb(66,184,221);
+	border-radius: 10px;
+}
+.list-pages .page-num:hover {
+	box-shadow: 3px 3px 1px rgb(66,184,221);
+}
+.list-pages .page-num-selected {
+	border: none;
+	color: rgb(66,184,221);
+	font-size: 20px;
+	font-weight: 700;
+	text-decoration: underline;
+}
+.list-pages .page-num-selected:hover {
+	box-shadow: none;
+}

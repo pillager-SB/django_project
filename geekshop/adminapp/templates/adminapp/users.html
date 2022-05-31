@@ -17,7 +17,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for user in users %}
+    {% for user in object_list %}
     <tr class="{% if not user.is_active %} inactive {% endif %}">
         <td><span>{{ user.username }}</span></td>
         <td><span>{{ user.city }}</span></td>
@@ -35,4 +35,17 @@
     {% endfor %}
     </tbody>
 </table>
+<nav class="list-pages">
+        <ul>
+            {% for p in paginator.page_range %}
+            {% if page_obj.number == p %}
+            <li class="page-num page-num-selected">{{ p }}</li>
+            {% else %}
+            <li class="page-num">
+                <a href="{{ p }}">{{ p }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
 {% endblock %}

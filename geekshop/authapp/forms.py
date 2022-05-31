@@ -17,7 +17,13 @@ class LoginForm(AuthenticationForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = ShopUser
-        fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email', 'age', 'avatar', 'city')
+        fields = ('username', 'email')
+
+    def save(self, commit=True):
+        user = super().save(commit)
+        user.is_active = False
+        user.save()
+        return user
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

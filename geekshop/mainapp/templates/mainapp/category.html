@@ -11,7 +11,12 @@
     <div class="category_products related">
         <div class="title clearfix">
             <h2>{{ category.name }}</h2>
-            <a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
+                {% if products.has_next %}
+                <a class="explore" href="{% url 'category' category.id products.next_page_number %}">Следующая страница</a>
+                {% endif %}
+                {% if products.has_previous %}
+                <a class="explore" href="{% url 'category' category.id products.previous_page_number %}">Предыдущая страница</a>
+                {% endif %}
         </div>
         <div class="related-products clearfix">
             {% include 'mainapp/includes/product_list_inc.html' %}

@@ -2,28 +2,30 @@
 {% load static %}
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>
-            {% block title %}
-            {{ title }}
-            {% endblock %}
-        </title>
-        {% block css %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/pure-min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/admin-styles.css' %}">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+        {{ title }}
         {% endblock %}
-        {% block js %}
-        {% endblock %}
-    </head>
-    <body>
-        <div class="content">
-                <a class="pure-button button-secondary button-radius" href="{% url 'index' %}">на главную</a>
-                <a class="pure-button button-secondary button-radius" href="{% url 'admin:users' %}">пользователи</a>
-                <a class="pure-button button-secondary button-radius" href="{% url 'admin:categories' %}">категории /    продукты</a>
-                <h2>{{ title }}</h2>
-                {% block content %}
-                {% endblock %}
-        </div>
-    </body>
+    </title>
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pure-min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin-styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/page.css' %}">
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+</head>
+<body>
+<div class="content">
+    <a class="pure-button button-secondary button-radius" href="{% url 'index' %}">на главную</a>
+    <a class="pure-button button-secondary button-radius" href="{% url 'admin:users' %}">пользователи</a>
+    <a class="pure-button button-secondary button-radius" href="{% url 'admin:categories' %}">категории / продукты</a>
+    <h2>{{ title }}</h2>
+    {% block content %}
+    {% endblock %}
+
+</div>
+</body>
 </html>
