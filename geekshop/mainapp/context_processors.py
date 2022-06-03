@@ -10,5 +10,5 @@ def menu_links(request):
 
 def basket(request):
     return {
-        'basket': request.user.basket
+        'basket': getattr(request.user, 'basket', None)
     }
