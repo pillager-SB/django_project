@@ -6,6 +6,6 @@
     {{ login_form.as_p }}
     <br>
     <input class="pure-button pure-button-primary button-radius" type="submit" value="войти">
-
+    <a class="pure-button pure-button-primary button-radius" href="{% url 'social:begin' 'vk-oauth2' %}?next=/">"войти через VK"</a>
 </form>
 {% endblock %}
