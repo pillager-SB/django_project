@@ -37,16 +37,17 @@ class ShopUserProfile(models.Model):
         (FEMALE, 'Female'),
         (NON_BINARY, 'Non Binary')
     )
-    user = models.OneToOneField(ShopUser, unique=True, null=False, db_index=True, on_delete=models.CASCADE)
-    tagline = models.CharField(verbose_name='теги', max_length=128, blank=True)
-    aboutMe = models.TextField(verbose_name='о себе', max_length=512, blank=True)
+    user = models.OneToOneField(ShopUser, related_name="profile", on_delete=models.CASCADE)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=1, verbose_name='пол')
+    about = models.TextField(verbose_name='о себе', max_length=512, blank=True)
+    tagline = models.CharField(verbose_name='теги', max_length=128, blank=True)
+
+
 
     @receiver(post_save, sender=ShopUser)
-    def create_user_profile(sender, instance, created, **kwargs):
+    def udate_user_profile(sender, instance, created, **kwargs):
         if created:
-            ShopUserProfile.objects.create(user=instance)
-
-    @receiver(post_save, sender=ShopUser)
-    def save_user_profile(sender, instance, **kwargs): 
-        instance.shopuserprofile.save()
+            profile = ShopUserProfile(user=instance)
+        else:
+            profile = ShopUserProfile.objects.get(user=instance)
+        profile.save()
