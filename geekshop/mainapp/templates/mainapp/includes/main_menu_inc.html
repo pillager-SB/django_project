@@ -13,7 +13,7 @@
                 <div class="dropdown-content">
                     <a href="{% url 'auth:edit' %}">Профиль</a>
                     <a href="{% url 'basket:view' %}">Корзина&nbsp;({{ basket.quantity }})</a>
-                    <a href="{% url 'basket:view' %}">Заказы</a>
+                    <a href="{% url 'orders:list' %}">Заказы</a>
                 </div>
             </div>
         </li>

@@ -1,0 +1,50 @@
+{% extends 'ordersapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="create-button">
+    <a href="#" class="pure-button pure-button-primary button-radius">
+        создать заказ
+    </a>
+</div>
+{% if not object_list %}
+<h4>У вас нет активных заказов</h4>
+{% else %}
+<table class="pure-table">
+    <thead>
+    <tr>
+        <th>Created_at</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+    <tr>
+        <td><span>{{ order.created_at }}</span></span></td>
+        <td><span>{{ order.status }}</span></td>
+        <td>
+            <a href="#"
+               class="pure-button pure-button-primary button-radius">
+                редактировать
+            </a>
+        </td>
+        <td>
+            <a href="#"
+               class="pure-button pure-button-primary button-radius">
+                оплатить
+            </a>
+        </td>
+        <td>
+            <a href="#"
+               class="pure-button pure-button-primary button-radius">
+                отменить
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
