@@ -1,11 +1,6 @@
 {% extends 'ordersapp/base.html' %}
 {% load static %}
 {% block content %}
-<div class="create-button">
-    <a href="#" class="pure-button pure-button-primary button-radius">
-        создать заказ
-    </a>
-</div>
 {% if not object_list %}
 <h4>У вас нет активных заказов</h4>
 {% else %}
@@ -22,8 +17,8 @@
     <tbody>
     {% for object in object_list %}
     <tr>
-        <td><span>{{ order.created_at }}</span></span></td>
-        <td><span>{{ order.status }}</span></td>
+        <td><span>{{ object.created_at }}</span></span></td>
+        <td><span>{{ object.get_status_display }}</span></td>
         <td>
             <a href="#"
                class="pure-button pure-button-primary button-radius">

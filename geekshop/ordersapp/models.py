@@ -11,16 +11,16 @@ class Order(models.Model):
     CANCELED = "CANCELED"
 
     STATUS_CHOICES = [
-        (CREATED, "Created"),
-        (PAID, "Paid"),
-        (SENT, "Sent"),
-        (DELIVERED, "Delivered"),
-        (CANCELED, "Canceled")
+        (CREATED, "Создан"),
+        (PAID, "Оплачен"),
+        (SENT, "Отправлен"),
+        (DELIVERED, "Доставлен"),
+        (CANCELED, "Отменен")
     ]
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, related_name="orders"
     )
-    status = models.CharField(choices=STATUS_CHOICES, max_length=16)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=16, default=CREATED)
     created_at = models.DateTimeField(auto_now_add=True)
 
 

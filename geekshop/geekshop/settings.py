@@ -72,7 +72,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'mainapp.context_processors.menu_links',
                 'mainapp.context_processors.menu_links',
-                'mainapp.context_processors.basket',
+                'basketapp.context_processors.basket',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
 

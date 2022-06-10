@@ -1,8 +1,15 @@
 {% extends 'basketapp/base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="basket_list">
-   {% include 'basketapp/includes/inc_basket_list.html' %}
+    {% include 'basketapp/includes/inc_basket_list.html' %}
+    {% if basket.quantity %}
+    <div class="create-button">
+        <a href="{% url 'orders:create' %}" class="pure-button pure-button-primary button-radius">
+            создать заказ
+        </a>
+    </div>
+    {% endif %}
+</div>
 </div>
 {% endblock %}
