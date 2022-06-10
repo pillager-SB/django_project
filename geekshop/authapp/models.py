@@ -44,7 +44,7 @@ class ShopUserProfile(models.Model):
     tagline = models.CharField(verbose_name='теги', max_length=128, blank=True)
 
     @receiver(post_save, sender=ShopUser)
-    def udate_user_profile(sender, instance, created, **kwargs):
+    def update_user_profile(sender, instance, created, **kwargs):
         if created:
             profile = ShopUserProfile(user=instance)
         else:

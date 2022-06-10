@@ -23,12 +23,6 @@ class TitleMixin:
         return context
 
 
-class SuperUserRequiredMixin:
-    @method_decorator(check_is_superuser)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-
 class UserListView(SuperUserRequiredMixin, TitleMixin, ListView):
     template_name = "adminapp/users.html"
     model = ShopUser
@@ -69,6 +63,7 @@ class CategoryListView(SuperUserRequiredMixin, TitleMixin, ListView):
     template_name = "adminapp/categories.html"
     model = Category
     title = "Категории"
+
 
 class CategoryCreateView(SuperUserRequiredMixin, TitleMixin, CreateView):
     template_name = "adminapp/create_category.html"
