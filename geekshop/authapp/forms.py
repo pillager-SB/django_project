@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from authapp.models import ShopUser
+from authapp.models import ShopUser, ShopUserProfile
 
 
 class LoginForm(AuthenticationForm):
@@ -32,7 +32,7 @@ class RegisterForm(UserCreationForm):
             field.help_text = ''
 
 
-class EditForm(UserChangeForm):
+class UserEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
         fields = ('username', 'first_name', 'last_name', 'email', 'age', 'avatar', 'password', 'city')
@@ -40,8 +40,6 @@ class EditForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-            field.help_text = ''
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
 
@@ -50,3 +48,9 @@ class EditForm(UserChangeForm):
         if data < 18:
             raise forms.ValidationError("Вы слишком молоды!")
         return data
+
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('gender', 'about')

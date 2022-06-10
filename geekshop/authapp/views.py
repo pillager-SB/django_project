@@ -1,4 +1,4 @@
-from authapp.forms import EditForm, LoginForm, RegisterForm
+from authapp.forms import UserEditForm, LoginForm, RegisterForm, UserProfileEditForm
 from django.contrib import auth
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from .models import ShopUser
 from .utils import send_verification_mail
+from django.db import transaction
 
 
 def login(request):
@@ -38,18 +39,29 @@ def register(request):
     return render(request, 'authapp/register.html', content)
 
 
+@transaction.atomic
 @login_required
 def edit(request):
     title = 'Редактирование'
-    if request.method == 'POST':
-        edit_form = EditForm(request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
-            edit_form.save()
-            return HttpResponseRedirect(reverse('auth:edit'))
-    else:
-        edit_form = EditForm(instance=request.user)
-    content = {'title': title, 'edit_form': edit_form}
-    return render(request, 'authapp/edit.html', content)
+    user_form = UserEditForm(instance=request.user)
+    profile_form = UserProfileEditForm(instance=request.user.profile)
+    if request.method == "POST":
+        user_form = UserEditForm(instance=request.user, data=request.POST, files=request.FILES)
+        profile_form = UserProfileEditForm(instance=request.user.profile, data=request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return HttpResponseRedirect(reverse("index"))
+
+    return render(request,
+                  'authapp/edit.html',
+                  context={
+                      'title': title,
+                      'user_form': user_form,
+                      'profile_form': profile_form
+                  },
+                  )
 
 
 def logout(request):
