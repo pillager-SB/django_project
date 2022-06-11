@@ -26,16 +26,24 @@
             </a>
         </td>
         <td>
-            <a href="#"
-               class="pure-button pure-button-primary button-radius">
-                оплатить
-            </a>
+            {% if object.can_pay %}
+                <a href="{% url 'orders:pay' object.pk %}"
+                   class="pure-button pure-button-primary button-radius">
+                    оплатить
+                </a>
+            {% else %}
+                <span>Оплачен</span>
+            {% endif %}
         </td>
         <td>
-            <a href="#"
-               class="pure-button pure-button-primary button-radius">
-                отменить
-            </a>
+            {% if object.can_cancel %}
+                <a href="{% url 'orders:cancel' object.pk %}"
+                   class="pure-button pure-button-primary button-radius">
+                    отменить
+                </a>
+            {% else %}
+                <span>Отменен</span>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}

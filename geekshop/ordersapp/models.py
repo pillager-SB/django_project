@@ -23,6 +23,14 @@ class Order(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, max_length=16, default=CREATED)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def can_pay(self):
+        return self.status == Order.CREATED
+
+    @property
+    def can_cancel(self):
+        return self.status in [Order.CREATED, Order.PAID, Order.SENT]
+
 
 class OrderItemsManager(models.Manager):
     def quantity(self):
