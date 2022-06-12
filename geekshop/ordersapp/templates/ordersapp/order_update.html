@@ -3,7 +3,10 @@
 {% block content %}
 <form class="pure-form" action="{% url 'orders:update' object.pk %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+    {{ orderitems.management_form }}
     {% for item_form in orderitems %}
     <fieldset>
         {{ item_form }}
