@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404
-from django.forms import formset_factory
+from django.forms import inlineformset_factory
 
 from ordersapp.forms import OrderItemForm
 from ordersapp.models import Order, OrderItem
@@ -70,10 +70,11 @@ class OrderUpdateView(LoginRequiredMixin, TitleMixin, UpdateView):
     fields = ()
 
     def get_context_data(self, **kwargs):
-        formset = formset_factory(OrderItemForm, extra=2)
-        return {
-            'orderitems': formset,
-                **super().get_context_data(**kwargs)}
+        context = super().get_context_data(**kwargs)
+        OrderItemFormset = inlineformset_factory(Order, OrderItem, OrderItemForm, extra=2)
+        formset = OrderItemFormset(instance=context['object'] )
+        context['orderitems'] = formset
+        return context
 
     def form_valid(self, form):
         return super().form_valid(form)

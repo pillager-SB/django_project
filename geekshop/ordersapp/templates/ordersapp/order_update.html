@@ -5,7 +5,9 @@
     {% csrf_token %}
     {{ form.as_p }}
     {% for item_form in orderitems %}
-    {{ item_form.as_p }}
+    <fieldset>
+        {{ item_form }}
+    </fieldset>
     {% endfor %}
     <input class="pure-button pure-button-primary button-radius" type="submit" value="сохранить">
 </form>
