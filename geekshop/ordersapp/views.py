@@ -1,14 +1,17 @@
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.urls import reverse
-from .models import Order, OrderItem
-from django.contrib.auth.decorators import login_required
-from utils.mixins import SuperUserRequiredMixin, TitleMixin
-from django.views.generic import ListView, CreateView, UpdateView
-from django.db import transaction
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404
+from django.forms import formset_factory
+
+from ordersapp.forms import OrderItemForm
+from ordersapp.models import Order, OrderItem
+from django.contrib.auth.decorators import login_required
+from utils.mixins import LoginRequiredMixin, TitleMixin
+from django.views.generic import ListView, UpdateView
+from django.db import transaction
 
 
-class OrderListView(SuperUserRequiredMixin, TitleMixin, ListView):
+class OrderListView(LoginRequiredMixin, TitleMixin, ListView):
     template_name = "ordersapp/order_list.html"
     model = Order
     title = "Заказы"
@@ -32,6 +35,7 @@ def create_order(request):
     basket_items.delete()
     return HttpResponseRedirect(reverse('orders:list'))
 
+
 @login_required
 def pay_for_order(request, pk):
     order = get_object_or_404(Order, pk=pk)
@@ -42,9 +46,9 @@ def pay_for_order(request, pk):
     order.save()
     return HttpResponseRedirect(reverse('orders:list'))
 
-
     basket_items.delete()
     return HttpResponseRedirect(reverse('orders:list'))
+
 
 @login_required
 @transaction.atomic()
@@ -56,9 +60,20 @@ def cancel_order(request, pk):
     order.status = Order.CANCELED
     order.save()
     return HttpResponseRedirect(reverse('orders:list'))
-# class OrderUpdateView(SuperUserRequiredMixin, TitleMixin, UpdateView):
-#     template_name = 'adminapp/update_user.html'
-#     model = Order
-#     form_class = UserEditForm
-#     success_url = reverse_lazy("admin:users")
-#     title = "Редактирование пользователя"
+
+
+class OrderUpdateView(LoginRequiredMixin, TitleMixin, UpdateView):
+    template_name = 'ordersapp/order_update.html'
+    model = Order
+    success_url = reverse_lazy("orders:list")
+    title = "Редактирование заказа"
+    fields = ()
+
+    def get_context_data(self, **kwargs):
+        formset = formset_factory(OrderItemForm, extra=2)
+        return {
+            'orderitems': formset,
+                **super().get_context_data(**kwargs)}
+
+    def form_valid(self, form):
+        return super().form_valid(form)

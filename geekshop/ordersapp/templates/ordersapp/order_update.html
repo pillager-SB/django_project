@@ -1,0 +1,12 @@
+{% extends 'ordersapp/base.html' %}
+
+{% block content %}
+<form class="pure-form" action="{% url 'orders:update' object.pk %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% for item_form in orderitems %}
+    {{ item_form.as_p }}
+    {% endfor %}
+    <input class="pure-button pure-button-primary button-radius" type="submit" value="сохранить">
+</form>
+{% endblock %}

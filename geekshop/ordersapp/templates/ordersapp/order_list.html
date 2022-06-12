@@ -20,7 +20,7 @@
         <td><span>{{ object.created_at }}</span></span></td>
         <td><span>{{ object.get_status_display }}</span></td>
         <td>
-            <a href="#"
+            <a href="{% url 'orders:update' object.pk %}"
                class="pure-button pure-button-primary button-radius">
                 редактировать
             </a>
