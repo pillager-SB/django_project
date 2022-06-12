@@ -80,6 +80,7 @@ class OrderUpdateView(LoginRequiredMixin, TitleMixin, UpdateView):
         else:
             return self.form_invalid(form, formset)
 
+    @transaction.atomic()
     def form_valid(self, form, formset):
         self.object = form.save()
         formset.save()
