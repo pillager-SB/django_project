@@ -1,7 +1,20 @@
 {% extends 'ordersapp/base.html' %}
 
+{% block js %}
+<script type="text/javascript">
+    $(function() {
+        $('#order-form fieldset').formset({
+            'addText': 'добавить',
+            'deleteText': 'удалить',
+            'addCssClass': 'pure-button pure-button-primary button-radius',
+            'deleteCssClass': 'pure-button pure-button-primary button-radius',
+        })
+    })
+
+</script>
+{% endblock %}
 {% block content %}
-<form class="pure-form" action="{% url 'orders:update' object.pk %}" method="post">
+<form id="order-form" class="pure-form" action="{% url 'orders:update' object.pk %}" method="post">
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
     {{ hidden }}
