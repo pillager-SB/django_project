@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.db import models
+from django.db import models, transaction
 from mainapp.models import Product
 
 
@@ -53,3 +53,14 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.product} - {self.quantity} шт.)'
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        old_order_item = OrderItem.objects.filter(pk=self.pk).first()
+        if old_order_item:
+            quantity_delta = self.quantity - old_order_item.quantity
+            self.product.quantity -= quantity_delta
+        else:
+            self.product.quantity -= self.quantity
+        self.product.save()
+        return super().save(*args, **kwargs)

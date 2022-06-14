@@ -6,15 +6,13 @@
     {% if basket.quantity %}
     <div class="create-button">
         <a href="{% url 'orders:create' %}"
-           class="pure-button
-                pure-button-primary button-radius
-                {% if not user.basket.can_create_order %}
-                pure-button-disabled
-                {% endif %}">
+           class="pure-button pure-button-primary button-radius
+           {% if not user.basket.can_create_order %}
+           pure-button-disabled
+           {% endif %}">
             создать заказ
         </a>
     </div>
     {% endif %}
-</div>
 </div>
 {% endblock %}
