@@ -8,9 +8,20 @@
     {% endfor %}
     {{ orderitems.management_form }}
     {% for item_form in orderitems %}
-    <fieldset>
-        {{ item_form }}
-    </fieldset>
+        <fieldset>
+            {% for field in item_form %}
+                {% if field.name == 'product_price' or field.name == 'summary' %}
+                    {% if field.value != None %}
+                        <span>{{ field.value }}</span>
+                    {% endif %}
+                {% else %}
+                    {% if not field.is_hidden %}
+                        <span> {{ field.label }}:</span>
+                    {% endif %}
+                    {{ field }}
+                {% endif %}
+            {% endfor %}
+        </fieldset>
     {% endfor %}
     <input class="pure-button pure-button-primary button-radius" type="submit" value="сохранить">
 </form>

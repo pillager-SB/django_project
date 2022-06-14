@@ -70,6 +70,13 @@ class OrderUpdateView(LoginRequiredMixin, TitleMixin, UpdateView):
     def get_context_data(self, **kwargs):
         formset = kwargs.get("formset", OrderItemFormset(instance=self.object))
         context = super().get_context_data(**kwargs)
+        for form in formset:
+            if form.initial:
+                form.initial['product_price'] = form.instance.product.price
+                form.initial['summary'] = (
+                        form.instance.product.price * form.instance.quantity
+                )
+
         context["orderitems"] = formset
         return context
 
