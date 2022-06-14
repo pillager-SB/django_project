@@ -43,10 +43,11 @@ class ShopUserProfile(models.Model):
     about = models.TextField(verbose_name='о себе', max_length=512, blank=True)
     tagline = models.CharField(verbose_name='теги', max_length=128, blank=True)
 
-    @receiver(post_save, sender=ShopUser)
-    def update_user_profile(sender, instance, created, **kwargs):
-        if created:
-            profile = ShopUserProfile(user=instance)
-        else:
-            profile = ShopUserProfile.objects.get(user=instance)
-        profile.save()
+
+@receiver(post_save, sender=ShopUser)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        profile = ShopUserProfile(user=instance)
+    else:
+        profile = ShopUserProfile.objects.get(user=instance)
+    profile.save()
