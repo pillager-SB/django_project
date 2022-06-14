@@ -4,14 +4,14 @@
 <div class="block">
     <a href="{% url 'product' product.id %}">
         {% if product.image %}
-            <img class="product-image" src="{{ product.image.url }}" alt="{{ product.short_desc }}">
+            <img class="product-image" src="{{ product.image.url }}" alt="">
         {% else %}
-            <img class="product-image" src="{% static 'img/product-1.jpg' %}" alt="Заглушка">
+            <img class="product-image" src="{% static 'img/product-1.jpg' %}" alt="">
         {% endif %}
         <div class="text">
-            <img src="{% static 'img/icon-hover.png' %}" alt="img">
+            <img src="/static/img/icon-hover.png" alt="img">
             <h4>{{ product.name|title }}</h4>
-            <p>{{ product.description|upper }}</p>
+            <p>{{ product.description|upper|truncatewords:10 }}</p>
         </div>
     </a>
 </div>

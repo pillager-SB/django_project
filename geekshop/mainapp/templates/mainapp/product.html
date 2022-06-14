@@ -1,5 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 
 {% block content %}
 <div class="hero-white">
@@ -39,7 +40,8 @@
             <h3 class="big-bold">{{ product.name }}</h3>
             <br>
             <p class="price"> {{ product.price }} <span>руб</span></p>
-            <a href="{% url 'basket:add' product.pk %}" class="red-button">
+            <a href="{% url 'basket:add' product.pk %}"
+               class="red-button {% disabled_if_cannot_buy user product %}">
                 заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
             </a>
             <div class="description-text">{{ product.description | linebreaks }}</div>

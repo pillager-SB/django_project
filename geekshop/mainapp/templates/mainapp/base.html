@@ -12,36 +12,35 @@
 </head>
 <body>
     <div class="container">
-        {% block content%}
+        {% block content %}
         {% endblock %}
         <div class="clr"></div>
     </div>
 
-<div class="footer">
-    <div class="clearfix">
-        <div class="text-footer">
-            <h3>контакты</h3>
+    <div class="footer">
+        <div class="clearfix">
+            <div class="text-footer">
+                <h3>контакты</h3>
+            </div>
+            <div class="text-footer">
+                <h3>полезная информация</h3>
+            </div>
+            <div class="text-footer clearfix">
+                <h3>Оставайтесь на связи</h3>
+                <p>Подписаться на новости и рассылки</p>
+                <form>
+                    <input type="email" name="email" placeholder="ваш email">
+                    <a href="#"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></a>
+                </form>
+            </div>
         </div>
-        <div class="text-footer">
-            <h3>полезная информация</h3>
+        <p class="small">&copy; GB {% current_year %}</p>
+        <div class="social">
+            <a href="#" class="social2"></a>
+            <a href="#" class="social3"></a>
+            <a href="#" class="social4"></a>
         </div>
-        <div class="text-footer clearfix">
-            <h3>Оставайтесь на связи</h3>
-            <p>Подписаться на новости и рассылки</p>
-            <form>
-                <input type="email" name="email" placeholder="ваш email">
-                <a href="#"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></a>
-            </form>
-        </div>
+        <p class="small">Положения &amp; Условия  /  Конфиденциальность &amp; Cookies</p>
     </div>
-    <p class="small">&copy; GB {% current_year %}</p>
-    <div class="social">
-        <a href="#" class="social2"></a>
-        <a href="#" class="social3"></a>
-        <a href="#" class="social4"></a>
-    </div>
-    <p class="small">Положения &amp; Условия / Конфиденциальность &amp; Cookies</p>
-
-</div>
 </body>
 </html>

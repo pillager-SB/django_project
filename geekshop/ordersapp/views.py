@@ -22,9 +22,11 @@ class OrderListView(LoginRequiredMixin, TitleMixin, ListView):
 @login_required
 @transaction.atomic()
 def create_order(request):
-    basket_items = request.user.basket.all()
-    if not basket_items:
+    basket = request.user.basket.all()
+    basket_items = basket.all()
+    if not basket_items or not basket.can_create_order():
         return HttpResponseBadRequest()
+
     order = Order(user=request.user)
     order.save()
     for item in basket_items:

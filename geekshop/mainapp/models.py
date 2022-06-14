@@ -21,3 +21,6 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.category.name})"
+
+    def can_add_to_basket(self, user):
+        pass

@@ -1015,7 +1015,12 @@ td:first-child {
 	box-shadow: none;
 	background-color: #d41306;
 }
-
+.red-button .disabled {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+	background-color: grey;
+}
 .description-text {
 	margin-top: 50px;
 	color:  #212121;
