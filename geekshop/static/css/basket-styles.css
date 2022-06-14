@@ -10,3 +10,10 @@
 .button-radius {
     border-radius: 4px;
 }
+
+.create-button {
+    margin: 1em 0;
+}
+.basket_summary {
+    margin: 0.5em 0;
+}

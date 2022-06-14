@@ -6,27 +6,14 @@ from adminapp.forms import (
     CategoryEditForm,
     ProductEditForm
 )
-from adminapp.utils import check_is_superuser
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
-from django.utils.decorators import method_decorator
+from utils.decorators import check_is_superuser
+from utils.mixins import SuperUserRequiredMixin, TitleMixin
 
 
-class TitleMixin:
-    title = None
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = self.title
-        return context
-
-
-class SuperUserRequiredMixin:
-    @method_decorator(check_is_superuser)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
 
 
 class UserListView(SuperUserRequiredMixin, TitleMixin, ListView):
@@ -37,7 +24,7 @@ class UserListView(SuperUserRequiredMixin, TitleMixin, ListView):
     p = 1
     page_kwarg = 'my_page'
 
-    def get_queryset(selfs):
+    def get_queryset(self):
         return ShopUser.objects.order_by('date_joined')
 
 
@@ -69,6 +56,7 @@ class CategoryListView(SuperUserRequiredMixin, TitleMixin, ListView):
     template_name = "adminapp/categories.html"
     model = Category
     title = "Категории"
+
 
 class CategoryCreateView(SuperUserRequiredMixin, TitleMixin, CreateView):
     template_name = "adminapp/create_category.html"

@@ -1,0 +1,53 @@
+{% extends 'ordersapp/base.html' %}
+{% load static %}
+{% block content %}
+{% if not object_list %}
+<h4>У вас нет активных заказов</h4>
+{% else %}
+<table class="pure-table">
+    <thead>
+    <tr>
+        <th>Created_at</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+    <tr>
+        <td><span>{{ object.created_at }}</span></span></td>
+        <td><span>{{ object.get_status_display }}</span></td>
+        <td>
+            <a href="{% url 'orders:update' object.pk %}"
+               class="pure-button pure-button-primary button-radius">
+                редактировать
+            </a>
+        </td>
+        <td>
+            {% if object.can_pay %}
+                <a href="{% url 'orders:pay' object.pk %}"
+                   class="pure-button pure-button-primary button-radius">
+                    оплатить
+                </a>
+            {% else %}
+                <span>Оплачен</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if object.can_cancel %}
+                <a href="{% url 'orders:cancel' object.pk %}"
+                   class="pure-button pure-button-primary button-radius">
+                    отменить
+                </a>
+            {% else %}
+                <span>Отменен</span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
